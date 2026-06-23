@@ -1,211 +1,332 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>متجر مضغوط نوف</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
-}
-
-body{
-background:#f8f5ef;
-}
-
-header{
-background:linear-gradient(135deg,#6b3e16,#c58b39);
-padding:30px;
-text-align:center;
-color:white;
-box-shadow:0 4px 15px rgba(0,0,0,.2);
-}
-
-header h1{
-font-size:32px;
-font-weight:800;
-}
-
-header p{
-margin-top:10px;
-font-size:17px;
-opacity:.9;
-}
-
-.container{
-padding:20px;
-max-width:1000px;
-margin:auto;
-}
-
-.card{
-background:white;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 5px 20px rgba(0,0,0,.1);
-margin-bottom:25px;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.card img{
-width:100%;
-height:260px;
-object-fit:cover;
-}
-
-.content{
-padding:20px;
-}
-
-.product-title{
-font-size:28px;
-font-weight:800;
-color:#333;
-margin-bottom:10px;
-}
-
-.desc{
-color:#666;
-line-height:1.8;
-margin-bottom:15px;
-}
-
-.features{
-background:#fff8ec;
-padding:15px;
-border-radius:15px;
-margin-bottom:20px;
-}
-
-.features div{
-margin-bottom:8px;
-font-weight:600;
-color:#5a3a12;
-}
-
-.price-box{
-display:flex;
-gap:15px;
-margin-bottom:20px;
-}
-
-.price{
-flex:1;
-background:linear-gradient(135deg,#5a3210,#b9872f);
-color:white;
-padding:20px;
-text-align:center;
-border-radius:15px;
-}
-
-.price h2{
-font-size:38px;
-}
-
-.order-btn{
-display:block;
-text-align:center;
-background:#25D366;
-padding:16px;
-border-radius:15px;
-text-decoration:none;
-color:white;
-font-size:20px;
-font-weight:bold;
-transition:.3s;
-}
-
-.order-btn:hover{
-background:#1ebc58;
-}
-
-.footer{
-text-align:center;
-padding:30px;
-color:#777;
-font-size:14px;
-}
-
-.badge{
-background:#e63946;
-display:inline-block;
-padding:8px 15px;
-border-radius:30px;
-color:white;
-margin-bottom:15px;
-font-size:14px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مضغوط أم نوف · لا تحكم حتى تذوق</title>
+  <!-- Font Awesome (أيقونات) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Tahoma', system-ui, sans-serif;
+    }
+    body {
+      background: linear-gradient(145deg, #fcf3e8 0%, #f8e9da 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .card {
+      max-width: 480px;
+      width: 100%;
+      background: #fffcf7;
+      border-radius: 48px 48px 32px 32px;
+      box-shadow: 0 25px 45px -12px rgba(90, 50, 20, 0.3), 0 8px 18px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: 0.25s ease;
+      border: 1px solid #f0dac8;
+    }
+    .card:hover {
+      transform: scale(1.005);
+      box-shadow: 0 30px 55px -10px #7a4a2a55;
+    }
+    /* الهيدر */
+    .header {
+      background: #5e2e1c;
+      background-image: radial-gradient(circle at 10% 20%, #7e3f28, #3f1f12);
+      padding: 28px 24px 20px;
+      color: #faeedc;
+      text-align: center;
+      border-bottom: 4px solid #d9b382;
+    }
+    .header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 8px #1f0f08;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .header h1 i {
+      color: #f7d49e;
+      font-size: 2rem;
+    }
+    .header .slogan {
+      font-size: 1rem;
+      background: #e9cbaa55;
+      backdrop-filter: blur(2px);
+      display: inline-block;
+      padding: 4px 22px;
+      border-radius: 60px;
+      margin-top: 8px;
+      font-weight: 500;
+      color: #f9e3cb;
+      border: 1px solid #b8865b;
+      letter-spacing: 0.5px;
+    }
+    .header .slogan i {
+      margin-left: 6px;
+      color: #fbcb9b;
+    }
+    /* المحتوى */
+    .content {
+      padding: 22px 24px 28px;
+    }
+    .item {
+      background: #fcf4eb;
+      border-radius: 28px;
+      padding: 18px 20px 20px;
+      margin-bottom: 20px;
+      box-shadow: inset 0 1px 4px #fff9f0, 0 6px 12px #e3cfbc55;
+      border: 1px solid #eedccb;
+      transition: 0.2s;
+    }
+    .item:last-child {
+      margin-bottom: 0;
+    }
+    .item-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #3a241a;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px dashed #dbbc9f;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+    .item-title i {
+      color: #a55f3a;
+      font-size: 1.6rem;
+      width: 2rem;
+    }
+    .detail-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 20px;
+      padding: 6px 4px;
+    }
+    .detail-item {
+      flex: 1 0 40%;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      background: #fff9f2;
+      padding: 6px 14px 6px 10px;
+      border-radius: 60px;
+      box-shadow: 0 1px 4px #dccbbc;
+    }
+    .detail-item i {
+      color: #b46f47;
+      width: 1.6rem;
+      text-align: center;
+      font-size: 1rem;
+    }
+    .detail-item .label {
+      font-weight: 600;
+      color: #412f23;
+      font-size: 0.95rem;
+    }
+    .detail-item .value {
+      font-weight: 600;
+      color: #1e130e;
+      background: #efdecb;
+      padding: 0 12px 0 8px;
+      border-radius: 30px;
+      margin-right: auto;
+      font-size: 0.95rem;
+    }
+    .price-tag {
+      background: #1d2c1d;
+      color: #f5efd8;
+      padding: 12px 16px;
+      border-radius: 60px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin: 14px 0 6px;
+      font-weight: 600;
+      border: 1px solid #b29674;
+      box-shadow: inset 0 1px 6px #ffffdd44;
+    }
+    .price-tag span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .price-tag i {
+      color: #f7d58c;
+      font-size: 1.1rem;
+    }
+    .badge-fresh {
+      background: #2f6b4a;
+      color: #f5f7e0;
+      padding: 4px 16px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      display: inline-block;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-top: 6px;
+      border: 1px solid #9fc7a5;
+    }
+    .rice-info {
+      background: #f7ede1;
+      border-radius: 60px;
+      padding: 8px 18px 8px 14px;
+      display: inline-block;
+      border: 1px solid #dabfaa;
+      font-weight: 600;
+      color: #342117;
+      margin-top: 6px;
+    }
+    .rice-info i {
+      color: #b77b4b;
+      margin-left: 10px;
+    }
+    .btn-whatsapp {
+      display: block;
+      background: #25d366;
+      background: linear-gradient(135deg, #2ad66d, #1ebd5e);
+      color: white;
+      text-align: center;
+      padding: 20px 16px;
+      border-radius: 80px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 28px;
+      box-shadow: 0 12px 20px -8px #1f8b47a0;
+      border: 1px solid #8be0a0;
+      transition: 0.2s;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .btn-whatsapp i {
+      font-size: 2rem;
+    }
+    .btn-whatsapp:hover {
+      background: #1fb85a;
+      transform: scale(1.01);
+      box-shadow: 0 15px 25px -6px #0f6b33;
+      color: #f5ffec;
+    }
+    .footer-note {
+      text-align: center;
+      margin-top: 20px;
+      color: #6e4d34;
+      font-size: 0.9rem;
+      border-top: 1px solid #dfcbbc;
+      padding-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .footer-note i {
+      color: #b96f3e;
+    }
+    .highlight {
+      background: #eedbc8;
+      border-radius: 60px;
+      padding: 0 12px;
+      font-weight: 600;
+    }
+    @media (max-width: 450px) {
+      .header h1 { font-size: 1.8rem; }
+      .detail-item { flex: 1 0 100%; }
+      .price-tag { flex-direction: column; align-items: center; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="card">
+    <!-- رأس المتجر -->
+    <div class="header">
+      <h1>
+        <i class="fas fa-drumstick-bite"></i> 
+        مضغوط أم نوف
+        <i class="fas fa-utensils"></i>
+      </h1>
+      <div class="slogan">
+        <i class="fas fa-quote-right"></i> لا تحكم حتى تذوق <i class="fas fa-quote-left"></i>
+      </div>
+    </div>
 
-<header>
-<h1>🍗 متجر مضغوط نوف</h1>
-<p>لا تحكم... حتى تذوق 😋</p>
-</header>
+    <div class="content">
+      <!-- المنتج: مضغوط كامل -->
+      <div class="item">
+        <div class="item-title">
+          <i class="fas fa-utensil-spoon"></i> 
+          مضغوط كامل
+        </div>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <i class="fas fa-tag"></i>
+            <span class="label">سعر الحبة</span>
+            <span class="value">٦٠ ﷼</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-tag"></i>
+            <span class="label">نص حبة</span>
+            <span class="value">٣٠ ﷼</span>
+          </div>
+        </div>
+        <!-- نوع الدجاج والأرز -->
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px;">
+          <span class="badge-fresh">
+            <i class="fas fa-check-circle"></i> دجاج اليوم · مبرد طازج
+          </span>
+          <span class="badge-fresh" style="background: #7d5d40;">
+            <i class="fas fa-check-circle"></i> بدون جلد
+          </span>
+        </div>
+        <div class="rice-info">
+          <i class="fas fa-seedling"></i> أرز أبو بنت
+        </div>
+        <div style="margin-top: 14px; font-size: 0.9rem; background: #f1e2d3; padding: 6px 14px; border-radius: 40px; display: inline-block; color: #341f13;">
+          <i class="fas fa-info-circle"></i> طلب عبر واتساب
+        </div>
+      </div>
 
-<div class="container">
+      <!-- بطاقة السعر بشكل واضح -->
+      <div class="price-tag">
+        <span><i class="fas fa-circle"></i> حبة كاملة: ٦٠ ر.س</span>
+        <span><i class="fas fa-circle-half-stroke"></i> نصف حبة: ٣٠ ر.س</span>
+      </div>
 
-<div class="card">
+      <!-- زر واتساب -->
+      <a href="https://wa.me/966505113747?text=السلام%20عليكم%20أريد%20طلب%20مضغوط%20أم%20نوف" 
+         target="_blank" 
+         class="btn-whatsapp">
+        <i class="fab fa-whatsapp"></i> 
+        اطلب عبر واتساب
+        <i class="fas fa-arrow-left"></i>
+      </a>
 
-<img src="images/madghot.jpg">
-
-<div class="content">
-
-<div class="badge">الأكثر طلباً 🔥</div>
-
-<div class="product-title">مضغوط نوف</div>
-
-<div class="desc">
-طعم أصيل وجودة عالية، طبخ يومي بمكونات طازجة ونكهة مميزة تخليك ترجع تطلب مرة ثانية.
-</div>
-
-<div class="features">
-<div>✅ دجاج اليوم مبرد طازج</div>
-<div>✅ بدون جلد - نظافة وجودة أعلى</div>
-<div>✅ أرز أبو بنت الفاخر</div>
-<div>✅ طبخ بيتي يومي</div>
-</div>
-
-<div class="price-box">
-
-<div class="price">
-الحبة كاملة
-<h2>60</h2>
-ريال
-</div>
-
-<div class="price">
-نصف حبة
-<h2>30</h2>
-ريال
-</div>
-
-</div>
-
-<a class="order-btn" href="https://wa.me/966000000000">
-اطلب الآن عبر واتساب
-</a>
-
-</div>
-</div>
-
-</div>
-
-<div class="footer">
-© جميع الحقوق محفوظة | متجر مضغوط نوف
-</div>
-
+      <!-- تفاصيل إضافية ورقم الجوال -->
+      <div class="footer-note">
+        <span><i class="fas fa-phone-alt"></i> +966 50 511 3747</span>
+        <span><i class="fas fa-clock"></i> طازج يومياً</span>
+        <span><i class="fas fa-store"></i> مضغوط أم نوف</span>
+      </div>
+      <div style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: #7c5d48; background: #efe4d7; padding: 6px 0; border-radius: 60px;">
+        <i class="fas fa-star" style="color: #d7a055;"></i> 
+        لا تحكم حتى تذوق 
+        <i class="fas fa-star" style="color: #d7a055;"></i>
+      </div>
+    </div>
+  </div>
 </body>
-</html>
+</html> 
