@@ -2,9 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>متجر مضغوط أم نوف · لا تحكم حتى تذوق</title>
-  <!-- Font Awesome (أيقونات) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>مضغوط نوف · لا تحكم حتى تذوق</title>
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -18,32 +18,31 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 20px;
+      align-items: flex-start;
+      padding: 12px;
     }
+    /* إجبار الواجهة على شكل هاتف مريح ومنظم ومنع تمدد سطح المكتب */
     .card {
-      max-width: 500px;
+      max-width: 430px;
       width: 100%;
       background: #fffcf7;
-      border-radius: 48px 48px 32px 32px;
-      box-shadow: 0 25px 45px -12px rgba(90, 50, 20, 0.3), 0 8px 18px rgba(0,0,0,0.05);
+      border-radius: 32px;
+      box-shadow: 0 15px 35px -10px rgba(90, 50, 20, 0.2);
       overflow: hidden;
-      transition: 0.25s ease;
-      border: 1px solid #f0dac8;
+      border: 1px solid #eedccb;
     }
-    /* الهيدر */
     .header {
       background: #5e2e1c;
       background-image: radial-gradient(circle at 10% 20%, #7e3f28, #3f1f12);
-      padding: 28px 24px 20px;
+      padding: 22px 16px 16px;
       color: #faeedc;
       text-align: center;
       border-bottom: 4px solid #d9b382;
     }
     .header h1 {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       font-weight: 700;
-      text-shadow: 0 4px 8px #1f0f08;
+      text-shadow: 0 2px 4px #1f0f08;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -51,469 +50,555 @@
     }
     .header h1 i {
       color: #f7d49e;
-      font-size: 2rem;
+      font-size: 1.6rem;
     }
     .header .slogan {
-      font-size: 1rem;
-      background: #e9cbaa55;
+      font-size: 0.9rem;
+      background: #e9cbaa35;
       backdrop-filter: blur(2px);
       display: inline-block;
-      padding: 4px 22px;
+      padding: 4px 18px;
       border-radius: 60px;
-      margin-top: 8px;
+      margin-top: 6px;
       font-weight: 500;
       color: #f9e3cb;
-      border: 1px solid #b8865b;
+      border: 1px solid #b8865b88;
     }
-    /* المحتوى */
     .content {
-      padding: 22px 24px 28px;
+      padding: 14px;
     }
     .section-title {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #5e2e1c;
-      margin-bottom: 14px;
+      margin: 4px 4px 12px;
       font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    /* بطاقات المنتجات المحدثة */
+    .product-card {
+      background: #fcf4eb;
+      border-radius: 24px;
+      padding: 12px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 10px #e3cfbc44;
+      border: 1px solid #eedccb;
+    }
+    .product-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 1px dashed #dbbc9f;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+    .product-header .name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #3a241a;
+    }
+    .product-header .price-badge {
+      background: #1d2c1d;
+      color: #f5efd8;
+      padding: 3px 10px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    .product-img {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      border: 1px solid #dfcbbc;
+      max-height: 150px;
+      object-fit: cover;
+      background: #f0e3d6;
+    }
+    .product-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .detail-badge {
+      background: #efe4d7;
+      border-radius: 60px;
+      padding: 3px 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #3a241a;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .detail-badge i {
+      color: #b46f47;
+    }
+    /* خيارات التخصيص والكمية */
+    .flex-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: #fffbf7;
+      padding: 8px 12px;
+      border-radius: 16px;
+      border: 1px solid #f0dac8;
+    }
+    .flavor-selector {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #412f23;
+    }
+    .flavor-selector label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .flavor-selector input[type="radio"] {
+      accent-color: #a55f3a;
+    }
+    .qty-selector {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .qty-controls {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .item {
-      background: #fcf4eb;
-      border-radius: 24px;
-      padding: 14px;
-      margin-bottom: 18px;
-      box-shadow: 0 6px 12px #e3cfbc44;
-      border: 1px solid #eedccb;
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-    .item-img {
-      width: 90px;
-      height: 90px;
-      border-radius: 16px;
-      object-fit: cover;
-      border: 2px solid #d9b382;
-    }
-    .item-details {
-      flex: 1;
-    }
-    .item-title {
-      font-size: 1.15rem;
+    .qty-controls button {
+      background: #dccbbc;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 1.2rem;
       font-weight: 700;
-      color: #3a241a;
-      margin-bottom: 4px;
+      color: #2f1c12;
+      cursor: pointer;
     }
-    .item-desc {
-      font-size: 0.85rem;
-      color: #7c5d48;
-      margin-bottom: 8px;
-    }
-    .badge-fresh {
-      background: #2f6b4a;
-      color: #f5f7e0;
-      padding: 2px 10px;
-      border-radius: 60px;
-      font-size: 0.75rem;
-      display: inline-block;
-      font-weight: 600;
-    }
-    .price-select-zone {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 8px;
-    }
-    .price {
+    .qty-controls span {
+      font-size: 1.1rem;
       font-weight: 700;
-      color: #5e2e1c;
-      font-size: 1.05rem;
+      min-width: 24px;
+      text-align: center;
     }
     .btn-add {
-      background: #a55f3a;
-      color: white;
+      background: #2f6b4a;
       border: none;
-      padding: 6px 14px;
+      color: white;
+      padding: 5px 14px;
       border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
+      font-weight: 700;
       font-size: 0.85rem;
-      transition: 0.2s;
-    }
-    .btn-add:hover {
-      background: #7e3f28;
+      cursor: pointer;
     }
     /* السلة */
-    .cart-box {
-      background: #fffcf7;
-      border: 2px dashed #d9b382;
+    .cart-section {
+      background: #f7ede1;
       border-radius: 24px;
-      padding: 16px;
-      margin-top: 24px;
+      padding: 12px 14px;
+      margin: 14px 0 10px;
+      border: 1px solid #dabfaa;
+    }
+    .cart-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #2f1c12;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid #dbbc9f;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
     }
     .cart-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 0;
-      border-bottom: 1px solid #f0dac8;
-      font-size: 0.95rem;
+      padding: 6px 0;
+      border-bottom: 1px dashed #decbb8;
+      font-size: 0.85rem;
     }
-    .cart-item:last-child {
+    .cart-item:last-of-type {
       border-bottom: none;
     }
-    .cart-item-actions {
+    .cart-item-info {
       display: flex;
-      align-items: center;
-      gap: 10px;
+      flex-direction: column;
     }
-    .btn-qty {
-      background: #efdecb;
-      border: none;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .cart-item-name {
+      font-weight: 700;
+      color: #3a241a;
+    }
+    .cart-item-flavor {
+      font-size: 0.75rem;
+      color: #b46f47;
+      font-weight: 600;
     }
     .cart-total {
       display: flex;
       justify-content: space-between;
       font-weight: 700;
-      font-size: 1.2rem;
-      color: #3a241a;
-      margin-top: 14px;
-      padding-top: 10px;
-      border-top: 2px solid #d9b382;
+      font-size: 1.1rem;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #b2967a;
     }
-    /* أزرار الطلب */
-    .btn-whatsapp {
+    .empty-cart {
+      color: #6e4d34;
+      font-size: 0.85rem;
+      font-style: italic;
+      text-align: center;
+      padding: 6px 0;
+    }
+    /* اتفاقية التوصيل والشروط المدمجة */
+    .delivery-agreement {
+      background: #f0e3d6;
+      padding: 10px 12px;
+      border-radius: 18px;
+      margin: 12px 0 8px;
+      border-right: 4px solid #7d5d40;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .delivery-agreement label {
       display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .delivery-agreement input[type="checkbox"] {
+      margin-top: 2px;
+      width: 16px;
+      height: 16px;
+      accent-color: #5e2e1c;
+    }
+    .highlight-area {
+      font-weight: 700;
+      color: #3f1f12;
+    }
+    .btn-checkout {
+      display: flex;
+      width: 100%;
       background: linear-gradient(135deg, #2ad66d, #1ebd5e);
       color: white;
       text-align: center;
-      padding: 16px;
-      border-radius: 80px;
-      font-size: 1.25rem;
+      padding: 14px;
+      border-radius: 50px;
+      font-size: 1.2rem;
       font-weight: 700;
-      text-decoration: none;
-      margin-top: 20px;
-      box-shadow: 0 12px 20px -8px #1f8b47a0;
-      border: 1px solid #8be0a0;
+      border: none;
+      box-shadow: 0 8px 16px -6px #1f8b47a0;
       cursor: pointer;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      width: 100%;
-    }
-    .btn-whatsapp:hover {
-      background: #1fb85a;
-    }
-    /* النافذة المنبثقة للاتفاقية والشروط */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.3s ease;
-    }
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .modal {
-      background: #fffcf7;
-      max-width: 440px;
-      width: 90%;
-      border-radius: 32px;
-      padding: 24px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      border: 2px solid #d9b382;
-      transform: translateY(20px);
-      transition: 0.3s ease;
-    }
-    .modal-overlay.active .modal {
-      transform: translateY(0);
-    }
-    .modal-title {
-      font-size: 1.3rem;
-      color: #5e2e1c;
-      font-weight: 700;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
       gap: 8px;
-      border-bottom: 2px dashed #dbbc9f;
-      padding-bottom: 8px;
     }
-    .modal-text {
-      font-size: 0.95rem;
-      color: #3a241a;
-      line-height: 1.6;
-      margin-bottom: 20px;
+    .btn-checkout:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
     }
-    .modal-text ul {
-      margin-right: 20px;
-      margin-top: 8px;
-    }
-    .modal-text li {
-      margin-bottom: 6px;
-    }
-    .modal-buttons {
-      display: flex;
-      gap: 12px;
-    }
-    .btn-confirm {
-      flex: 1;
-      background: #25d366;
-      color: white;
-      border: none;
-      padding: 12px;
+    .toast-msg {
+      background: #1d2c1d;
+      color: #f5efd8;
+      padding: 6px 12px;
       border-radius: 50px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 1rem;
+      font-size: 0.8rem;
+      text-align: center;
+      margin: 6px 0;
     }
-    .btn-cancel {
-      background: #e1cfbe;
-      color: #5e2e1c;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    /* الفوتر */
     .footer-note {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 14px;
       color: #6e4d34;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       border-top: 1px solid #dfcbbc;
-      padding-top: 16px;
+      padding-top: 10px;
       display: flex;
       justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-note i {
+      color: #b96f3e;
     }
   </style>
 </head>
 <body>
-
-  <div class="card">
-    <!-- رأس المتجر -->
-    <div class="header">
-      <h1>
-        <i class="fas fa-utensils"></i> 
-        مضغوط أم نوف
-      </h1>
-      <div class="slogan">
-        <i class="fas fa-quote-right"></i> لا تحكم حتى تذوق <i class="fas fa-quote-left"></i>
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="section-title"><i class="fas fa-hamburger"></i> قائمة الطعام</div>
-      
-      <!-- منتج 1: مضغوط كامل -->
-      <div class="item">
-        <img src="https://foodnof.github.io/1782253738417.png" alt="مضغوط كامل" class="item-img">
-        <div class="item-details">
-          <div class="item-title">مضغوط دجاج كامل</div>
-          <div class="item-desc">طازج مبرد بدون جلد · أرز أبو بنت</div>
-          <div><span class="badge-fresh">دجاج اليوم</span></div>
-          <div class="price-select-zone">
-            <span class="price">٦٠ ﷼</span>
-            <button class="btn-add" onclick="addToCart('مضغوط دجاج كامل', 60)">إضافة للسلة</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- منتج 2: نصف مضغوط -->
-      <div class="item">
-        <img src="https://foodnof.github.io/1782253738417.png" alt="نصف مضغوط" class="item-img">
-        <div class="item-details">
-          <div class="item-title">نصف مضغوط دجاج</div>
-          <div class="item-desc">طازج مبرد بدون جلد · أرز أبو بنت</div>
-          <div><span class="badge-fresh">دجاج اليوم</span></div>
-          <div class="price-select-zone">
-            <span class="price">٣٠ ﷼</span>
-            <button class="btn-add" onclick="addToCart('نصف مضغوط دجاج', 30)">إضافة للسلة</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- منتج 3: سلطة خضار -->
-      <div class="item">
-        <img src="https://foodnof.github.io/٢٠٢٦٠٦٢٤_٠٣٤٦٢٦.png" alt="سلطة خضار" class="item-img">
-        <div class="item-details">
-          <div class="item-title">سلطة خضار طازجة</div>
-          <div class="item-desc">مجهزة يومياً من خضار منتقاة بعناية</div>
-          <div class="price-select-zone">
-            <span class="price">٧ ﷼</span>
-            <button class="btn-add" onclick="addToCart('سلطة خضار طازجة', 7)">إضافة للسلة</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- قسم سلة المشتريات المعروضة دائماً -->
-      <div class="cart-box">
-        <div class="section-title" style="margin-bottom: 8px;"><i class="fas fa-shopping-basket"></i> سلة الطلبات</div>
-        <div id="cart-items-container">
-          <div style="color: #9c8370; text-align: center; padding: 10px; font-size: 0.9rem;">السلة فارغة حالياً</div>
-        </div>
-        <div class="cart-total">
-          <span>المجموع الإجمالي:</span>
-          <span id="total-price">٠ ﷼</span>
-        </div>
-      </div>
-
-      <!-- زر إرسال الطلب البدئي (يفتح اتفاقية الشروط) -->
-      <button class="btn-whatsapp" onclick="openOrderModal()">
-        <i class="fab fa-whatsapp"></i> 
-        إتمام الطلب وإرسال عبر واتساب
-      </button>
-
-      <!-- تفاصيل إضافية ورقم الجوال -->
-      <div class="footer-note">
-        <span><i class="fas fa-phone-alt"></i> +966 50 511 3747</span>
-        <span><i class="fas fa-clock"></i> طازج يومياً</span>
-      </div>
-    </div>
+<div class="card">
+  <div class="header">
+    <h1><i class="fas fa-utensils"></i> مضغوط نوف</h1>
+    <div class="slogan"><i class="fas fa-quote-right"></i> لا تحكم حتى تذوق <i class="fas fa-quote-left"></i></div>
   </div>
 
-  <!-- واجهة شروط الموافقة والتوصيل الدفع (Modal) -->
-  <div class="modal-overlay" id="termsModal">
-    <div class="modal">
-      <div class="modal-title">
-        <i class="fas fa-clipboard-check"></i> شروط وإقرار إتمام الطلب
+  <div class="content" id="app">
+    <div class="section-title"><i class="fas fa-store"></i> قائمة الطعام</div>
+
+    <!-- المنتج 1: مضغوط لحم نصف كيلو -->
+    <div class="product-card">
+      <div class="product-header">
+        <span class="name">مضغوط لحم (نصف كيلو)</span>
+        <span class="price-badge">٩٠ ر.س</span>
       </div>
-      <div class="modal-text">
-        يرجى قراءة الشروط التالية للموافقة وبدء تجهيز طلبك:
-        <ul>
-          <li><strong>مناطق التوصيل فقط داخل:</strong> (أحد رفيدة · المربع · الرونة · الرصراص).</li>
-          <li><strong>آلية الدفع:</strong> يتوجب تحويل مبلغ الطلب كاملاً لإتمام وتأكيد العملية.</li>
-          <li><strong>وقت التجهيز:</strong> بعد تأكيد تحويل المبلغ عبر الواتساب، سيبدأ الطبخ فوراً.</li>
-          <li><strong>الوقت المتوقع للطبخ والتوصيل:</strong> من ساعة إلى ساعة ونصف ($1 - 1.5$ ساعة).</li>
-        </ul>
+      <img class="product-img" src="https://foodnof.github.io/1782262727147.png" alt="مضغوط لحم حري">
+      <div class="product-details">
+        <span class="detail-badge"><i class="fas fa-check-circle"></i> خروف حري طازج</span>
+        <span class="detail-badge"><i class="fas fa-seedling"></i> أرز أبو بنت</span>
+        <span class="detail-badge"><i class="fas fa-clock"></i> طبخ ١-١.٥ س</span>
       </div>
-      <div class="modal-buttons">
-        <button class="btn-confirm" onclick="proceedToWhatsApp()">أوافق ومتابعة للواتساب</button>
-        <button class="btn-cancel" onclick="closeOrderModal()">إلغاء</button>
+      <div class="flex-actions">
+        <div class="flavor-selector">
+          <span>النكهة:</span>
+          <label><input type="radio" value="عادي" v-model="options.meatHalf"> عادي</label>
+          <label><input type="radio" value="حراق" v-model="options.meatHalf"> حراق</label>
+        </div>
+        <div class="qty-selector">
+          <div class="qty-controls">
+            <button @click="updateQty('meatHalf', -1)">−</button>
+            <span>{{ qty.meatHalf }}</span>
+            <button @click="updateQty('meatHalf', 1)">+</button>
+          </div>
+          <button class="btn-add" @click="addToCart('meatHalf')">أضف للسلة</button>
+        </div>
       </div>
     </div>
+
+    <!-- المنتج 2: مضغوط لحم كيلو كامل -->
+    <div class="product-card">
+      <div class="product-header">
+        <span class="name">مضغوط لحم (كيلو كامل)</span>
+        <span class="price-badge">١٨٠ ر.س</span>
+      </div>
+      <img class="product-img" src="https://foodnof.github.io/1782262727147.png" alt="مضغوط لحم حري">
+      <div class="product-details">
+        <span class="detail-badge"><i class="fas fa-check-circle"></i> خروف حري طازج</span>
+        <span class="detail-badge"><i class="fas fa-seedling"></i> أرز أبو بنت</span>
+        <span class="detail-badge"><i class="fas fa-clock"></i> طبخ ١-١.٥ س</span>
+      </div>
+      <div class="flex-actions">
+        <div class="flavor-selector">
+          <span>النكهة:</span>
+          <label><input type="radio" value="عادي" v-model="options.meatWhole"> عادي</label>
+          <label><input type="radio" value="حراق" v-model="options.meatWhole"> حراق</label>
+        </div>
+        <div class="qty-selector">
+          <div class="qty-controls">
+            <button @click="updateQty('meatWhole', -1)">−</button>
+            <span>{{ qty.meatWhole }}</span>
+            <button @click="updateQty('meatWhole', 1)">+</button>
+          </div>
+          <button class="btn-add" @click="addToCart('meatWhole')">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- المنتج 3: مضغوط دجاج كامل -->
+    <div class="product-card">
+      <div class="product-header">
+        <span class="name">مضغوط دجاج كامل</span>
+        <span class="price-badge">٦٠ ر.س</span>
+      </div>
+      <img class="product-img" src="https://foodnof.github.io/1782253738417.png" alt="مضغوط دجاج">
+      <div class="product-details">
+        <span class="detail-badge"><i class="fas fa-check-circle"></i> مبرد طازج بدون جلد</span>
+        <span class="detail-badge"><i class="fas fa-seedling"></i> أرز أبو بنت</span>
+      </div>
+      <div class="flex-actions">
+        <div class="flavor-selector">
+          <span>النكهة:</span>
+          <label><input type="radio" value="عادي" v-model="options.chickenWhole"> عادي</label>
+          <label><input type="radio" value="حراق" v-model="options.chickenWhole"> حراق</label>
+        </div>
+        <div class="qty-selector">
+          <div class="qty-controls">
+            <button @click="updateQty('chickenWhole', -1)">−</button>
+            <span>{{ qty.chickenWhole }}</span>
+            <button @click="updateQty('chickenWhole', 1)">+</button>
+          </div>
+          <button class="btn-add" @click="addToCart('chickenWhole')">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- المنتج 4: نصف حبة مضغوط دجاج -->
+    <div class="product-card">
+      <div class="product-header">
+        <span class="name">نصف حبة مضغوط دجاج</span>
+        <span class="price-badge">٣٠ ر.س</span>
+      </div>
+      <img class="product-img" src="https://foodnof.github.io/1782253738417.png" alt="نصف مضغوط دجاج">
+      <div class="product-details">
+        <span class="detail-badge"><i class="fas fa-check-circle"></i> مبرد طازج بدون جلد</span>
+        <span class="detail-badge"><i class="fas fa-seedling"></i> أرز أبو بنت</span>
+      </div>
+      <div class="flex-actions">
+        <div class="flavor-selector">
+          <span>النكهة:</span>
+          <label><input type="radio" value="عادي" v-model="options.chickenHalf"> عادي</label>
+          <label><input type="radio" value="حراق" v-model="options.chickenHalf"> حراق</label>
+        </div>
+        <div class="qty-selector">
+          <div class="qty-controls">
+            <button @click="updateQty('chickenHalf', -1)">−</button>
+            <span>{{ qty.chickenHalf }}</span>
+            <button @click="updateQty('chickenHalf', 1)">+</button>
+          </div>
+          <button class="btn-add" @click="addToCart('chickenHalf')">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- المنتج 5: سلطة خضار -->
+    <div class="product-card">
+      <div class="product-header">
+        <span class="name">سلطة خضار طازجة</span>
+        <span class="price-badge">٧ ر.س</span>
+      </div>
+      <img class="product-img" src="https://foodnof.github.io/٢٠٢٦٠٦٢٤_٠٣٤٦٢٦.png" alt="سلطة خضار">
+      <div class="product-details">
+        <span class="detail-badge"><i class="fas fa-leaf"></i> خضار مشكلة طازجة يومياً</span>
+      </div>
+      <div class="flex-actions">
+        <div class="qty-selector">
+          <div class="qty-controls">
+            <button @click="updateQty('salad', -1)">−</button>
+            <span>{{ qty.salad }}</span>
+            <button @click="updateQty('salad', 1)">+</button>
+          </div>
+          <button class="btn-add" @click="addToCart('salad')">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- السلة المعروضة بشكل مرتب دائماً -->
+    <div class="cart-section">
+      <div class="cart-title"><i class="fas fa-shopping-basket"></i> سلة الطلبات</div>
+      <div v-if="cart.length === 0" class="empty-cart">السلة فارغة حالياً</div>
+      <div v-for="(item, idx) in cart" :key="idx" class="cart-item">
+        <div class="cart-item-info">
+          <span class="cart-item-name">{{ item.name }} × {{ item.qty }}</span>
+          <span v-if="item.flavor" class="cart-item-flavor">({{ item.flavor }})</span>
+        </div>
+        <span style="font-weight: 700; color: #5e2e1c;">{{ item.total }} ر.س</span>
+      </div>
+      <div class="cart-total">
+        <span>المجموع الإجمالي:</span>
+        <span>{{ totalPrice }} ر.س</span>
+      </div>
+    </div>
+
+    <!-- إقرار شروط التوصيل والدفع لبدء العمل -->
+    <div class="delivery-agreement">
+      <label>
+        <input type="checkbox" v-model="agreed">
+        <span>
+          أوافق على أن التوصيل فقط داخل <span class="highlight-area">(أحد رفيدة · المربع · الرونه · الرصراص)</span>، وأنه يتوجب تحويل المبلغ لإتمام الطلب وبدء الطبخ (الوقت المتوقع للتوصيل من ساعة إلى ساعة ونص).
+        </span>
+      </label>
+    </div>
+
+    <!-- زر تأكيد الطلب المباشر للواتساب -->
+    <button class="btn-checkout" :disabled="!agreed || cart.length === 0" @click="sendOrder">
+      <i class="fab fa-whatsapp"></i> تأكيد وإرسال الطلب عبر الواتساب
+    </button>
+
+    <div v-if="message" class="toast-msg">{{ message }}</div>
+
+    <div class="footer-note">
+      <span><i class="fas fa-phone-alt"></i> +966 50 511 3747</span>
+      <span><i class="fas fa-store"></i> مضغوط نوف</span>
+    </div>
   </div>
+</div>
 
-  <script>
-    // كائن تخزين بيانات السلة
-    let cart = {};
-
-    function addToCart(name, price) {
-      if (cart[name]) {
-        cart[name].qty += 1;
-      } else {
-        cart[name] = { price: price, qty: 1 };
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      qty: { meatHalf: 1, meatWhole: 1, chickenWhole: 1, chickenHalf: 1, salad: 1 },
+      options: { meatHalf: 'عادي', meatWhole: 'عادي', chickenWhole: 'عادي', chickenHalf: 'عادي' },
+      cart: [],
+      agreed: false,
+      message: '',
+      menu: {
+        meatHalf: { name: 'مضغوط لحم (نصف كيلو)', price: 90, hasFlavor: true },
+        meatWhole: { name: 'مضغوط لحم (كيلو كامل)', price: 180, hasFlavor: true },
+        chickenWhole: { name: 'مضغوط دجاج كامل', price: 60, hasFlavor: true },
+        chickenHalf: { name: 'نصف حبة مضغوط دجاج', price: 30, hasFlavor: true },
+        salad: { name: 'سلطة خضار طازجة', price: 7, hasFlavor: false }
       }
-      updateCartUI();
-    }
-
-    function changeQty(name, amount) {
-      if (!cart[name]) return;
-      cart[name].qty += amount;
-      if (cart[name].qty <= 0) {
-        delete cart[name];
+    },
+    computed: {
+      totalPrice() {
+        return this.cart.reduce((sum, item) => sum + item.total, 0);
       }
-      updateCartUI();
-    }
+    },
+    methods: {
+      updateQty(type, delta) {
+        const newVal = this.qty[type] + delta;
+        if (newVal < 1) return;
+        this.qty[type] = newVal;
+      },
+      addToCart(type) {
+        const item = this.menu[type];
+        const qty = this.qty[type];
+        const flavor = item.hasFlavor ? this.options[type] : null;
+        
+        // البحث فيما إذا كان الصنف بنفس النكهة مضاف مسبقاً
+        const existing = this.cart.find(c => c.id === type && c.flavor === flavor);
+        if (existing) {
+          existing.qty += qty;
+          existing.total = existing.qty * existing.price;
+        } else {
+          this.cart.push({
+            id: type,
+            name: item.name,
+            price: item.price,
+            qty: qty,
+            flavor: flavor,
+            total: qty * item.price
+          });
+        }
+        
+        this.qty[type] = 1; // إعادة تعيين العداد الافتراضي
+        this.message = `✅ تم إضافة ${item.name} إلى السلة`;
+        setTimeout(() => { this.message = ''; }, 2000);
+      },
+      sendOrder() {
+        if (!this.agreed || this.cart.length === 0) return;
 
-    function updateCartUI() {
-      const container = document.getElementById('cart-items-container');
-      const totalSpan = document.getElementById('total-price');
-      container.innerHTML = '';
-      
-      let total = 0;
-      let keys = Object.keys(cart);
+        // صياغة الفاتورة المنظمة للواتساب بشكل احترافي ومتناسق مع التعديلات
+        let messageText = "السلام عليكم ورحمة الله وبركاته، أريد طلب من مضغوط نوف:\n\n";
+        
+        this.cart.forEach(item => {
+          let flavorStr = item.flavor ? ` [${item.flavor}]` : "";
+          messageText += `• *${item.name}${flavorStr}*:\n   العدد: ${item.qty} | السعر: ${item.total} ﷼\n`;
+        });
+        
+        messageText += `\n💰 *المجموع الإجمالي*: ${this.totalPrice} ﷼\n\n`;
+        messageText += `📍 أقّر بالموافقة على أن التوصيل داخل النطاق المحدد (أحد رفيدة، المربع، الرونه، الرصراص) وسأقوم بتحويل المبلغ لتأكيد وبدء الطبخ فوراً.`;
 
-      if (keys.length === 0) {
-        container.innerHTML = '<div style="color: #9c8370; text-align: center; padding: 10px; font-size: 0.9rem;">السلة فارغة حالياً</div>';
-        totalSpan.innerText = '٠ ﷼';
-        return;
+        const phone = '966505113747';
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(messageText)}`;
+        window.open(url, '_blank');
+        
+        this.message = '📤 جاري الانتقال لتطبيق الواتساب...';
+        setTimeout(() => { this.message = ''; }, 3000);
       }
-
-      keys.forEach(name => {
-        let item = cart[name];
-        let itemTotal = item.price * item.qty;
-        total += itemTotal;
-
-        let div = document.createElement('div');
-        div.className = 'cart-item';
-        div.innerHTML = `
-          <div>
-            <strong>${name}</strong> <br>
-            <span style="font-size:0.85rem; color:#7c5d48;">${item.price} ﷼ × ${item.qty}</span>
-          </div>
-          <div class="cart-item-actions">
-            <span style="font-weight:bold; color:#5e2e1c;">${itemTotal} ﷼</span>
-            <button class="btn-qty" onclick="changeQty('${name}', 1)">+</button>
-            <button class="btn-qty" onclick="changeQty('${name}', -1)">-</button>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-
-      totalSpan.innerText = total + ' ﷼';
     }
-
-    function openOrderModal() {
-      if (Object.keys(cart).length === 0) {
-        alert('الرجاء إضافة منتج واحد على الأقل للسلة قبل إتمام الطلب.');
-        return;
-      }
-      document.getElementById('termsModal').classList.add('active');
-    }
-
-    function closeOrderModal() {
-      document.getElementById('termsModal').classList.remove('active');
-    }
-
-    function proceedToWhatsApp() {
-      closeOrderModal();
-      
-      let phoneNumber = "966505113747";
-      let message = "السلام عليكم ورحمة الله وبركاته، أريد طلب من مضغوط أم نوف:\n\n";
-      
-      let total = 0;
-      Object.keys(cart).forEach(name => {
-        let item = cart[name];
-        let subtotal = item.price * item.qty;
-        total += subtotal;
-        message += `• *${name}*:\n   العدد: ${item.qty} | السعر: ${subtotal} ﷼\n`;
-      });
-      
-      message += `\n💰 *المجموع الإجمالي*: ${total} ﷼\n\n`;
-      message += `📍 أقّر بالموافقة على أن التوصيل ضمن النطاق المحدد (أحد رفيدة، المربع، الرونة، الرصراص) وسأقوم بتحويل المبلغ لبدء الطبخ.`;
-      
-      // ترميز النص ليتوافق مع رابط الواتساب
-      let encodedMessage = encodeURIComponent(message);
-      let whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-      
-      // فتح المحادثة
-      window.open(whatsappURL, '_blank');
-    }
-  </script>
+  });
+</script>
 </body>
 </html>
+ 
