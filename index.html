@@ -21,7 +21,6 @@
       align-items: flex-start;
       padding: 12px;
     }
-    /* إجبار الواجهة على شكل هاتف مريح ومنظم ومنع تمدد سطح المكتب */
     .card {
       max-width: 430px;
       width: 100%;
@@ -70,13 +69,15 @@
     .section-title {
       font-size: 1.1rem;
       color: #5e2e1c;
-      margin: 4px 4px 12px;
+      margin: 14px 4px 12px;
       font-weight: 700;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    /* بطاقات المنتجات المحدثة */
+    .section-title:first-of-type {
+      margin-top: 4px;
+    }
     .product-card {
       background: #fcf4eb;
       border-radius: 24px;
@@ -84,6 +85,22 @@
       margin-bottom: 14px;
       box-shadow: 0 4px 10px #e3cfbc44;
       border: 1px solid #eedccb;
+      position: relative;
+    }
+    /* ستايل المنتجات غير المتوفرة */
+    .product-card.unavailable {
+      opacity: 0.65;
+      background: #f5ece3;
+    }
+    .unavailable-badge {
+      background: #7d655c;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+      display: inline-block;
+      margin-top: 4px;
     }
     .product-header {
       display: flex;
@@ -107,6 +124,9 @@
       font-weight: 700;
       font-size: 0.85rem;
       white-space: nowrap;
+    }
+    .product-card.unavailable .price-badge {
+      background: #8a8279;
     }
     .product-img {
       width: 100%;
@@ -137,7 +157,6 @@
     .detail-badge i {
       color: #b46f47;
     }
-    /* خيارات التخصيص والكمية */
     .flex-actions {
       display: flex;
       flex-direction: column;
@@ -202,7 +221,10 @@
       font-size: 0.85rem;
       cursor: pointer;
     }
-    /* السلة */
+    .btn-add:disabled {
+      background: #a3988f;
+      cursor: not-allowed;
+    }
     .cart-section {
       background: #f7ede1;
       border-radius: 24px;
@@ -261,7 +283,6 @@
       text-align: center;
       padding: 6px 0;
     }
-    /* اتفاقية التوصيل والشروط المدمجة */
     .delivery-agreement {
       background: #f0e3d6;
       padding: 10px 12px;
@@ -270,18 +291,7 @@
       border-right: 4px solid #7d5d40;
       font-size: 0.8rem;
       line-height: 1.4;
-    }
-    .delivery-agreement label {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      cursor: pointer;
-    }
-    .delivery-agreement input[type="checkbox"] {
-      margin-top: 2px;
-      width: 16px;
-      height: 16px;
-      accent-color: #5e2e1c;
+      color: #4a3525;
     }
     .highlight-area {
       font-weight: 700;
@@ -309,6 +319,73 @@
       cursor: not-allowed;
       box-shadow: none;
     }
+    
+    /* أنماط قسم التقييم الجديد */
+    .feedback-section {
+      background: #fffbf7;
+      border: 1px solid #e2d2c2;
+      border-radius: 24px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+    .rating-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .rating-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #4a3525;
+    }
+    .stars {
+      display: flex;
+      gap: 4px;
+      direction: ltr; /* لجعل النجوم تبدأ من اليسار لليمين برمجياً لسهولة التحديد */
+    }
+    .stars i {
+      font-size: 1.25rem;
+      color: #dccbbc;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .stars i.active {
+      color: #f1c40f;
+    }
+    .feedback-textarea {
+      width: 100%;
+      height: 70px;
+      border: 1px solid #dbbc9f;
+      border-radius: 14px;
+      padding: 10px;
+      font-size: 0.85rem;
+      background: #fff;
+      resize: none;
+      margin-top: 6px;
+      outline: none;
+      color: #3a241a;
+    }
+    .feedback-textarea:focus {
+      border-color: #a55f3a;
+    }
+    .btn-feedback {
+      width: 100%;
+      background: #5e2e1c;
+      color: #faeedc;
+      border: none;
+      padding: 10px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
     .toast-msg {
       background: #1d2c1d;
       color: #f5efd8;
@@ -332,6 +409,82 @@
     .footer-note i {
       color: #b96f3e;
     }
+
+    /* الشاشة المنبثقة */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+    .modal-content {
+      background: #fffcf7;
+      max-width: 380px;
+      width: 100%;
+      border-radius: 24px;
+      padding: 20px;
+      border: 2px solid #d9b382;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      text-align: center;
+      animation: popupShow 0.3s ease-out;
+    }
+    @keyframes popupShow {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-title {
+      font-size: 1.2rem;
+      color: #5e2e1c;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .modal-text {
+      font-size: 0.9rem;
+      color: #4a3525;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      background: #fcf4eb;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px dashed #dbbc9f;
+    }
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-modal-confirm {
+      flex: 2;
+      background: #2f6b4a;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .btn-modal-cancel {
+      flex: 1;
+      background: #dccbbc;
+      color: #2f1c12;
+      border: none;
+      padding: 10px;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
   </style>
 </head>
 <body>
@@ -344,8 +497,8 @@
   <div class="content" id="app">
     <div class="section-title"><i class="fas fa-store"></i> قائمة الطعام</div>
 
-    <!-- المنتج 1: مضغوط لحم نصف كيلو -->
-    <div class="product-card">
+    <!-- المنتج 1: مضغوط لحم نصف كيلو (غير متوفر) -->
+    <div class="product-card unavailable">
       <div class="product-header">
         <span class="name">مضغوط لحم (نصف كيلو)</span>
         <span class="price-badge">٩٠ ر.س</span>
@@ -353,28 +506,15 @@
       <img class="product-img" src="https://foodnof.github.io/1782262727147.png" alt="مضغوط لحم حري">
       <div class="product-details">
         <span class="detail-badge"><i class="fas fa-check-circle"></i> خروف حري طازج</span>
-        <span class="detail-badge"><i class="fas fa-seedling"></i> أرز أبو بنت</span>
         <span class="detail-badge"><i class="fas fa-clock"></i> طبخ ١-١.٥ س</span>
       </div>
-      <div class="flex-actions">
-        <div class="flavor-selector">
-          <span>النكهة:</span>
-          <label><input type="radio" value="عادي" v-model="options.meatHalf"> عادي</label>
-          <label><input type="radio" value="حراق" v-model="options.meatHalf"> حراق</label>
-        </div>
-        <div class="qty-selector">
-          <div class="qty-controls">
-            <button @click="updateQty('meatHalf', -1)">−</button>
-            <span>{{ qty.meatHalf }}</span>
-            <button @click="updateQty('meatHalf', 1)">+</button>
-          </div>
-          <button class="btn-add" @click="addToCart('meatHalf')">أضف للسلة</button>
-        </div>
+      <div style="text-align: center; margin-top: 4px;">
+        <span class="unavailable-badge"><i class="fas fa-hourglass-start"></i> غير متوفر حالياً · سيبدأ قريباً إن شاء الله</span>
       </div>
     </div>
 
-    <!-- المنتج 2: مضغوط لحم كيلو كامل -->
-    <div class="product-card">
+    <!-- المنتج 2: مضغوط لحم كيلو كامل (غير متوفر) -->
+    <div class="product-card unavailable">
       <div class="product-header">
         <span class="name">مضغوط لحم (كيلو كامل)</span>
         <span class="price-badge">١٨٠ ر.س</span>
@@ -382,23 +522,10 @@
       <img class="product-img" src="https://foodnof.github.io/1782262727147.png" alt="مضغوط لحم حري">
       <div class="product-details">
         <span class="detail-badge"><i class="fas fa-check-circle"></i> خروف حري طازج</span>
-        <span class="detail-badge"><i class="fas fa-seedling"></i> أرز أبو بنت</span>
         <span class="detail-badge"><i class="fas fa-clock"></i> طبخ ١-١.٥ س</span>
       </div>
-      <div class="flex-actions">
-        <div class="flavor-selector">
-          <span>النكهة:</span>
-          <label><input type="radio" value="عادي" v-model="options.meatWhole"> عادي</label>
-          <label><input type="radio" value="حراق" v-model="options.meatWhole"> حراق</label>
-        </div>
-        <div class="qty-selector">
-          <div class="qty-controls">
-            <button @click="updateQty('meatWhole', -1)">−</button>
-            <span>{{ qty.meatWhole }}</span>
-            <button @click="updateQty('meatWhole', 1)">+</button>
-          </div>
-          <button class="btn-add" @click="addToCart('meatWhole')">أضف للسلة</button>
-        </div>
+      <div style="text-align: center; margin-top: 4px;">
+        <span class="unavailable-badge"><i class="fas fa-hourglass-start"></i> غير متوفر حالياً · سيبدأ قريباً إن شاء الله</span>
       </div>
     </div>
 
@@ -480,7 +607,7 @@
       </div>
     </div>
 
-    <!-- السلة المعروضة بشكل مرتب دائماً -->
+    <!-- السلة -->
     <div class="cart-section">
       <div class="cart-title"><i class="fas fa-shopping-basket"></i> سلة الطلبات</div>
       <div v-if="cart.length === 0" class="empty-cart">السلة فارغة حالياً</div>
@@ -497,20 +624,55 @@
       </div>
     </div>
 
-    <!-- إقرار شروط التوصيل والدفع لبدء العمل -->
     <div class="delivery-agreement">
-      <label>
-        <input type="checkbox" v-model="agreed">
-        <span>
-          أوافق على أن التوصيل فقط داخل <span class="highlight-area">(أحد رفيدة · المربع · الرونه · الرصراص)</span>، وأنه يتوجب تحويل المبلغ لإتمام الطلب وبدء الطبخ (الوقت المتوقع للتوصيل من ساعة إلى ساعة ونص).
-        </span>
-      </label>
+      <i class="fas fa-info-circle"></i> تنويه: التوصيل فقط داخل <span class="highlight-area">(أحد رفيدة · المربع · الرونه · الرصراص)</span>، ويتوجب تحويل المبلغ لإتمام الطلب وبدء الطبخ.
     </div>
 
-    <!-- زر تأكيد الطلب المباشر للواتساب -->
-    <button class="btn-checkout" :disabled="!agreed || cart.length === 0" @click="sendOrder">
+    <button class="btn-checkout" :disabled="cart.length === 0" @click="showConfirmationModal">
       <i class="fab fa-whatsapp"></i> تأكيد وإرسال الطلب عبر الواتساب
     </button>
+
+    <!-- قسم تقييم الطبخ والتوصيل الجديد -->
+    <div class="section-title"><i class="fas fa-star"></i> رأيك يهمنا</div>
+    <div class="feedback-section">
+      <!-- تقييم الطبخ -->
+      <div class="rating-container">
+        <span class="rating-label">تقييم الطبخ:</span>
+        <div class="stars">
+          <i v-for="star in 5" :key="'cook-'+star" class="fas fa-star" :class="{ active: star <= cookingRating }" @click="cookingRating = star"></i>
+        </div>
+      </div>
+      
+      <!-- تقييم التوصيل -->
+      <div class="rating-container">
+        <span class="rating-label">تقييم التوصيل:</span>
+        <div class="stars">
+          <i v-for="star in 5" :key="'delivery-'+star" class="fas fa-star" :class="{ active: star <= deliveryRating }" @click="deliveryRating = star"></i>
+        </div>
+      </div>
+
+      <!-- كتابة ملاحظة -->
+      <span class="rating-label">اكتب ملاحظتك أو مقترحك:</span>
+      <textarea class="feedback-textarea" v-model="feedbackNotes" placeholder="اكتب هنا أي ملاحظات ترغب في إرسالها لإدارة المطعم..."></textarea>
+      
+      <button class="btn-feedback" @click="sendEmailFeedback">
+        <i class="fas fa-paper-plane"></i> إرسال التقييم والملاحظات
+      </button>
+    </div>
+
+    <!-- الشاشة المنبثقة للتأكيد -->
+    <div v-if="showModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-title"><i class="fas fa-shipping-fast"></i> إقرار وشروط التوصيل</div>
+        <div class="modal-text">
+          أوافق على أن التوصيل فقط داخل <span class="highlight-area">(أحد رفيدة · المربع · الرونه · الرصراص)</span>، وأنه يتوجب تحويل المبلغ لإتمام الطلب وبدء الطبخ (الوقت المتوقع للتوصيل من ساعة إلى ساعة ونص).
+        </div>
+        <div class="modal-buttons">
+          <button class="btn-modal-confirm" @click="confirmAndSend">موافق، إرسال الطلب</button>
+          <button class="btn-modal-cancel" @click="showModal = false">تراجع</button>
+        </div>
+      </div>
+    </div>
 
     <div v-if="message" class="toast-msg">{{ message }}</div>
 
@@ -526,14 +688,16 @@
   new Vue({
     el: '#app',
     data: {
-      qty: { meatHalf: 1, meatWhole: 1, chickenWhole: 1, chickenHalf: 1, salad: 1 },
-      options: { meatHalf: 'عادي', meatWhole: 'عادي', chickenWhole: 'عادي', chickenHalf: 'عادي' },
+      qty: { chickenWhole: 1, chickenHalf: 1, salad: 1 },
+      options: { chickenWhole: 'عادي', chickenHalf: 'عادي' },
       cart: [],
-      agreed: false,
+      showModal: false,
       message: '',
+      // متغيرات التقييم الجديدة
+      cookingRating: 0,
+      deliveryRating: 0,
+      feedbackNotes: '',
       menu: {
-        meatHalf: { name: 'مضغوط لحم (نصف كيلو)', price: 90, hasFlavor: true },
-        meatWhole: { name: 'مضغوط لحم (كيلو كامل)', price: 180, hasFlavor: true },
         chickenWhole: { name: 'مضغوط دجاج كامل', price: 60, hasFlavor: true },
         chickenHalf: { name: 'نصف حبة مضغوط دجاج', price: 30, hasFlavor: true },
         salad: { name: 'سلطة خضار طازجة', price: 7, hasFlavor: false }
@@ -555,7 +719,6 @@
         const qty = this.qty[type];
         const flavor = item.hasFlavor ? this.options[type] : null;
         
-        // البحث فيما إذا كان الصنف بنفس النكهة مضاف مسبقاً
         const existing = this.cart.find(c => c.id === type && c.flavor === flavor);
         if (existing) {
           existing.qty += qty;
@@ -571,14 +734,19 @@
           });
         }
         
-        this.qty[type] = 1; // إعادة تعيين العداد الافتراضي
+        this.qty[type] = 1;
         this.message = `✅ تم إضافة ${item.name} إلى السلة`;
         setTimeout(() => { this.message = ''; }, 2000);
       },
+      showConfirmationModal() {
+        if (this.cart.length === 0) return;
+        this.showModal = true;
+      },
+      confirmAndSend() {
+        this.showModal = false;
+        this.sendOrder();
+      },
       sendOrder() {
-        if (!this.agreed || this.cart.length === 0) return;
-
-        // صياغة الفاتورة المنظمة للواتساب بشكل احترافي ومتناسق مع التعديلات
         let messageText = "السلام عليكم ورحمة الله وبركاته، أريد طلب من مضغوط نوف:\n\n";
         
         this.cart.forEach(item => {
@@ -595,10 +763,31 @@
         
         this.message = '📤 جاري الانتقال لتطبيق الواتساب...';
         setTimeout(() => { this.message = ''; }, 3000);
+      },
+      // دالة إرسال التقييم والملاحظات عبر البريد الإلكتروني
+      sendEmailFeedback() {
+        if (this.cookingRating === 0 && this.deliveryRating === 0 && !this.feedbackNotes.trim()) {
+          this.message = '⚠️ فضلاً قم بتعبئة التقييم أو كتابة ملاحظة أولاً';
+          setTimeout(() => { this.message = ''; }, 2500);
+          return;
+        }
+
+        const email = '7o1160000@gmail.com';
+        const subject = encodeURIComponent('تقييم وملاحظات عميل - مضغوط نوف');
+        
+        let bodyText = `أهلاً إدارة مضغوط نوف، لقد تلقيتم تقييماً جديداً من العميل:\n\n`;
+        bodyText += `⭐ تقييم الطبخ: ${this.cookingRating ? this.cookingRating + ' / 5' : 'لم يتم التقييم'}\n`;
+        bodyText += `⭐ تقييم التوصيل: ${this.deliveryRating ? this.deliveryRating + ' / 5' : 'لم يتم التقييم'}\n\n`;
+        bodyText += `📝 الملاحظات:\n${this.feedbackNotes.trim() ? this.feedbackNotes : 'لا توجد ملاحظات مكتوبة.'}\n`;
+        
+        const mailtoUrl = `mailto:${email}?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+        window.location.href = mailtoUrl;
+        
+        this.message = '📩 جاري فتح تطبيق البريد لإرسال ملاحظاتك...';
+        setTimeout(() => { this.message = ''; }, 3000);
       }
     }
   });
 </script>
 </body>
 </html>
- 
